@@ -1,0 +1,672 @@
+Can you convert this ui.qml files to Qt c++ code:
+Start frame:
+Rectangle {
+    id: rectangle
+    width: 1200
+    height: 700
+
+    color: Constants.backgroundColor
+
+    Rectangle {
+        id: rectangle1
+        color: "#f0f2f5"
+        border.color: "#f0f2f5"
+        anchors.fill: parent
+
+        Rectangle {
+            id: rectangle2
+            x: 410
+            y: 150
+            width: 380
+            height: 400
+            opacity: 1
+            color: "#ffffff"
+            radius: 8
+            border.color: "#f0f2f5"
+
+            Rectangle {
+                id: rectangle3
+                x: 15
+                y: 15
+                width: 350
+                height: 60
+                color: "#00ffffff"
+                radius: 8
+                border.color: "#f0f2f5"
+                border.width: 2
+
+                TextInput {
+                    id: textInput
+                    x: 15
+                    y: 0
+                    width: 320
+                    height: 60
+                    color: "#cbccce"
+                    text: qsTr("E-post")
+                    font.pixelSize: 19
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                    font.styleName: "Fet"
+                    font.family: "Arial"
+                }
+            }
+
+            Rectangle {
+                id: rectangle4
+                x: 15
+                y: 85
+                width: 350
+                height: 60
+                color: "#00ffffff"
+                radius: 8
+                border.color: "#f0f2f5"
+                border.width: 2
+            }
+
+
+            Rectangle {
+                id: rectangle5
+                x: 15
+                y: 170
+                width: 350
+                height: 60
+                color: "#1877f2"
+                radius: 8
+
+                Text {
+                    id: text1
+                    x: 109
+                    y: 13
+                    color: "#ffffff"
+                    text: qsTr("Logga in")
+                    anchors.fill: parent
+                    font.pixelSize: 24
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.styleName: "Black"
+                    font.family: "Arial"
+                }
+            }
+
+            Button {
+                id: button
+                x: 15
+                y: 170
+                width: 350
+                height: 60
+                opacity: 1
+                visible: false
+                text: qsTr("Log in")
+                icon.source: ""
+                icon.color: "#177ce1"
+                clip: false
+                flat: false
+                highlighted: false
+                font.weight: Font.Bold
+                font.family: "Verdana"
+                display: AbstractButton.TextBesideIcon
+            }
+
+            Rectangle {
+                id: rectangle6
+                x: 15
+                y: 260
+                width: 350
+                height: 2
+                color: "#f0f2f5"
+            }
+
+            Rectangle {
+                id: rectangle7
+                x: 90
+                y: 295
+                width: 200
+                height: 60
+                color: "#42b72a"
+                radius: 8
+
+                Text {
+                    id: text2
+                    color: "#ffffff"
+                    text: qsTr("Create new account")
+                    anchors.fill: parent
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.styleName: "Black"
+                    font.family: "Arial"
+                }
+            }
+
+            Button {
+                id: button1
+                x: 90
+                y: 295
+                width: 200
+                height: 60
+                visible: false
+                text: qsTr("Button")
+                flat: false
+            }
+
+            TextInput { // this should be a placeholder for the username input
+                id: textInput1
+                x: 30
+                y: 85
+                width: 320
+                height: 60
+                color: "#cbccce"
+                text: qsTr("password")
+                font.pixelSize: 19
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                font.styleName: "Fet"
+                font.family: "Arial"
+            }
+        }
+
+        Text {
+            id: text3
+            x: 500
+            y: 46
+            width: 200
+            height: 58
+            color: "#177ce1"
+            text: qsTr("Safebook")
+            font.pixelSize: 50
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignBottom
+            font.styleName: "Black"
+            font.family: "Arial"
+        }
+    }
+}
+
+registrate frame:
+Rectangle {
+    id: rectangle
+    width: 1200
+    height: 700
+
+    color: Constants.backgroundColor
+
+    Rectangle {
+        id: rectangle1
+        color: "#f0f2f5"
+        border.color: "#f0f2f5"
+        anchors.fill: parent
+
+        Rectangle {
+            id: rectangle2
+            x: 410
+            y: 150
+            width: 380
+            height: 400
+            opacity: 1
+            color: "#ffffff"
+            radius: 8
+            border.color: "#f0f2f5"
+
+            Rectangle {
+                id: rectangle3
+                x: 15
+                y: 15
+                width: 350
+                height: 60
+                color: "#00ffffff"
+                radius: 8
+                border.color: "#f0f2f5"
+                border.width: 2
+
+                TextInput {
+                    id: textInput
+                    x: 15
+                    y: 0
+                    width: 320
+                    height: 60
+                    color: "#cbccce"
+                    text: qsTr("E-post")
+                    font.pixelSize: 19
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                    font.styleName: "Fet"
+                    font.family: "Arial"
+                }
+            }
+
+            Rectangle {
+                id: rectangle4
+                x: 15
+                y: 85
+                width: 350
+                height: 60
+                color: "#00ffffff"
+                radius: 8
+                border.color: "#f0f2f5"
+                border.width: 2
+            }
+
+            Rectangle {
+                id: rectangle5
+                x: 15
+                y: 170
+                width: 350
+                height: 60
+                color: "#42b72a"
+                radius: 8
+
+                Text {
+                    id: text1
+                    x: 109
+                    y: 13
+                    color: "#ffffff"
+                    text: qsTr("Registrera")
+                    anchors.fill: parent
+                    font.pixelSize: 24
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.styleName: "Black"
+                    font.family: "Arial"
+                }
+            }
+
+            Button {
+                id: button
+                x: 15
+                y: 170
+                width: 350
+                height: 60
+                opacity: 1
+                visible: false
+                text: qsTr("Logga in")
+                icon.source: ""
+                icon.color: "#177ce1"
+                clip: false
+                flat: false
+                highlighted: false
+                font.weight: Font.Bold
+                font.family: "Verdana"
+                display: AbstractButton.TextBesideIcon
+            }
+
+            Rectangle {
+                id: rectangle6
+                x: 15
+                y: 260
+                width: 350
+                height: 2
+                color: "#f0f2f5"
+            }
+
+            Rectangle {
+                id: rectangle7
+                x: 90
+                y: 295
+                width: 200
+                height: 60
+                color: "#1877f2"
+                radius: 8
+
+                Text {
+                    id: text2
+                    color: "#ffffff"
+                    text: qsTr("Gå tillbaka")
+                    anchors.fill: parent
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.styleName: "Black"
+                    font.family: "Arial"
+                }
+            }
+
+            Button {
+                id: button1
+                x: 90
+                y: 295
+                width: 200
+                height: 60
+                visible: false
+                text: qsTr("Button")
+                flat: false
+            }
+
+            TextInput {
+                id: textInput1
+                x: 30
+                y: 85
+                width: 320
+                height: 60
+                color: "#cbccce"
+                text: qsTr("Lösenord")
+                font.pixelSize: 19
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                font.styleName: "Fet"
+                font.family: "Arial"
+            }
+        }
+
+        Text {
+            id: text3
+            x: 500
+            y: 46
+            width: 200
+            height: 58
+            color: "#177ce1"
+            text: qsTr("Safebook")
+            font.pixelSize: 50
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignBottom
+            font.styleName: "Black"
+            font.family: "Arial"
+        }
+    }
+}
+
+logged in frame:
+Rectangle {
+    id: rectangle
+    width: 1200
+    height: 700
+
+    color: Constants.backgroundColor
+
+    Rectangle {
+        id: rectangle1
+        color: "#000000"
+        border.color: "#000000"
+        anchors.fill: parent
+        anchors.leftMargin: 0
+        anchors.rightMargin: 0
+        anchors.topMargin: 0
+        anchors.bottomMargin: 0
+
+        Rectangle {
+            id: rectangle2
+            x: 20
+            y: 160
+            width: 1160
+            height: 520
+            opacity: 1
+            color: "#111212"
+            radius: 8
+            border.color: "#da601d"
+
+            Rectangle {
+                id: rectangle3
+                x: 658
+                y: 57
+                width: 489
+                height: 452
+                color: "#000000"
+                radius: 8
+                border.color: "#060606"
+                border.width: 0
+
+                TextArea {
+                    id: textArea
+                    color: "#f9fcff"
+                    anchors.fill: parent
+                    anchors.leftMargin: 0
+                    selectByKeyboard: false
+                    cursorVisible: true
+                    activeFocusOnPress: false
+                    readOnly: true
+                    font.styleName: "Normal"
+                    selectedTextColor: "#b49e9e"
+                    font.pointSize: 11
+                    placeholderTextColor: "#ffffff"
+                    font.family: "Arial"
+                    placeholderText: qsTr("HASH: b89eaac7e61417341b710b727768294d0e6a277b ")
+                }
+            }
+
+            Rectangle {
+                id: rectangle4
+                x: 18
+                y: 443
+                width: 220
+                height: 60
+                color: "#000000"
+                radius: 8
+                border.color: "#da601d"
+                border.width: 1
+
+                Text {
+                    id: text1
+                    color: "#da601d"
+                    text: qsTr("START CRACKING")
+                    anchors.fill: parent
+                    font.pixelSize: 22
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                    font.styleName: "Black"
+                }
+            }
+
+            Text {
+                id: text2
+                x: 808
+                y: 24
+                width: 339
+                height: 27
+                color: "#da601d"
+                text: qsTr("Cracked Passwords:")
+                font.pixelSize: 23
+                font.family: "Arial"
+            }
+
+            Rectangle {
+                id: rectangle5
+                x: 410
+                y: 443
+                width: 234
+                height: 60
+                color: "#000000"
+                radius: 8
+                border.color: "#da601d"
+                border.width: 1
+
+                Text {
+                    id: text4
+                    color: "#da601d"
+                    text: qsTr("SAFE SHUTDOWN")
+                    anchors.fill: parent
+                    anchors.leftMargin: 0
+                    font.pixelSize: 23
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.styleName: "Black"
+                    font.family: "Arial"
+                }
+            }
+
+            Rectangle {
+                id: rectangle10
+                x: 18
+                y: 57
+                width: 626
+                height: 128
+                color: "#111212"
+                radius: 8
+                border.color: "#da601d"
+                border.width: 1
+
+                Rectangle {
+                    id: rectangle6
+                    x: 191
+                    y: 17
+                    width: 416
+                    height: 40
+                    color: "#000000"
+                    radius: 8
+                    border.color: "#da601d"
+                    border.width: 1
+                }
+
+                Text {
+                    id: text5
+                    x: 0
+                    y: 24
+                    width: 109
+                    height: 27
+                    color: "#da601d"
+                    text: qsTr("SOURCE:")
+                    font.pixelSize: 16
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+
+                Rectangle {
+                    id: rectangle7
+                    x: 115
+                    y: 17
+                    width: 82
+                    height: 40
+                    color: "#000000"
+                    radius: 8
+                    border.color: "#da601d"
+                    border.width: 1
+                }
+
+                Rectangle {
+                    id: rectangle8
+                    x: 191
+                    y: 70
+                    width: 416
+                    height: 40
+                    color: "#000000"
+                    radius: 8
+                    border.color: "#da601d"
+                    border.width: 1
+                }
+
+                Text {
+                    id: text7
+                    x: 0
+                    y: 77
+                    width: 109
+                    height: 27
+                    color: "#da601d"
+                    text: qsTr("TARGET:")
+                    font.pixelSize: 16
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+
+                Rectangle {
+                    id: rectangle9
+                    x: 115
+                    y: 70
+                    width: 82
+                    height: 40
+                    color: "#000000"
+                    radius: 8
+                    border.color: "#da601d"
+                    border.width: 1
+                }
+
+                Text {
+                    id: text8
+                    x: 115
+                    y: 25
+                    color: "#da601d"
+                    text: qsTr("Open File")
+                    anchors.fill: parent
+                    anchors.leftMargin: 115
+                    anchors.rightMargin: 429
+                    anchors.topMargin: 53
+                    anchors.bottomMargin: 107
+                    font.pixelSize: 16
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+
+                Text {
+                    id: text9
+                    x: 205
+                    y: 25
+                    width: 386
+                    height: 24
+                    color: "#ffffff"
+                    text: qsTr("C:\\Documents\\source.txt")
+                    font.pixelSize: 13
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Text {
+                    id: text10
+                    x: 205
+                    y: 78
+                    width: 386
+                    height: 24
+                    color: "#ffffff"
+                    text: qsTr("C:\\Documents\\target.txt")
+                    font.pixelSize: 13
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Text {
+                    id: text11
+                    x: 108
+                    y: 18
+                    color: "#da601d"
+                    text: qsTr("Open File")
+                    anchors.fill: parent
+                    anchors.leftMargin: 115
+                    anchors.rightMargin: 429
+                    anchors.topMargin: 107
+                    anchors.bottomMargin: 54
+                    font.pixelSize: 16
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+            }
+
+            Text {
+                id: text6
+                x: 27
+                y: 31
+                width: 146
+                height: 27
+                color: "#da601d"
+                text: qsTr("Dictionary:")
+                font.pixelSize: 18
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                font.family: "Arial"
+            }
+
+            CheckBox {
+                id: checkBox
+                x: 18
+                y: 397
+                text: qsTr("Parallel BruteForce")
+                display: AbstractButton.TextOnly
+            }
+        }
+
+        Text {
+            id: text3
+            x: 500
+            y: 46
+            width: 200
+            height: 58
+            color: "#da601d"
+            text: qsTr("SafeCracker")
+            font.pixelSize: 50
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignBottom
+            font.styleName: "Black"
+            font.family: "Arial"
+        }
+    }
+}
+
+and add horizontal flip animation when

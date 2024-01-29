@@ -1,0 +1,123 @@
+#include "widget.h"
+#include <QFrame>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPalette>
+#include <QPushButton>
+#include <QSpacerItem>
+#include <QVBoxLayout>
+
+------------------Fade out entire window example----------------------
+
+#include <QApplication>
+#include <QFrame>
+#include <QPropertyAnimation>
+#include <QPushButton>
+#include <qpainter.h>
+
+class ExampleWidget : public QFrame {
+public:
+  ExampleWidget(QWidget *parent = nullptr) : QFrame(parent) {
+    // Create a button
+    QPushButton *button = new QPushButton("Fade out", this);
+    button->move(100, 50);
+
+    // Connect the button click to the fade out animation
+    connect(button, &QPushButton::clicked, this, [this]() {
+      QPropertyAnimation *animation =
+          new QPropertyAnimation(this, "windowOpacity");
+      animation->setDuration(2000);
+      animation->setStartValue(1.0);
+      animation->setEndValue(0.0);
+      animation->start();
+    });
+  }
+
+protected:
+  void paintEvent(QPaintEvent *event) override {
+    QFrame::paintEvent(event);
+
+    QPainter painter(this);
+    painter.setPen(Qt::black);
+    painter.setBrush(Qt::blue);
+    painter.drawRect(0, 0, width(), height());
+  }
+};
+
+int main(int argc, char *argv[]) {
+  QApplication app(argc, argv);
+
+  ExampleWidget widget;
+  widget.show();
+
+  return app.exec();
+}
+
+----------------Fade out frame example----------------------------
+
+#include <QApplication>
+#include <QFrame>
+#include <QGraphicsOpacityEffect>
+#include <QMainWindow>
+#include <QPropertyAnimation>
+#include <QPushButton>
+
+class MainWindow : public QMainWindow {
+  Q_OBJECT
+
+public:
+  MainWindow(QWidget *parent = nullptr) : QMainWindow(parent) {
+    // Create a frame and a button
+    frame = new QFrame(this);
+    frame->setGeometry(50, 50, 200, 200);
+    frame->setStyleSheet("background-color: blue;");
+
+    button = new QPushButton("Fade Out", this);
+    button->setGeometry(50, 300, 200, 30);
+
+    // Connect button's clicked signal to slot
+    connect(button, &QPushButton::clicked, this, &MainWindow::fadeOut);
+
+    // Set up the QGraphicsOpacityEffect for the frame
+    opacityEffect = new QGraphicsOpacityEffect(this);
+    frame->setGraphicsEffect(opacityEffect);
+
+    // Set initial opacity
+    opacityEffect->setOpacity(1.0);
+  }
+
+public slots:
+  void fadeOut() {
+    // Create a property animation for the opacity effect
+    QPropertyAnimation *animation =
+        new QPropertyAnimation(opacityEffect, "opacity");
+    animation->setDuration(
+        1000); // Set the duration of the animation in milliseconds
+    animation->setStartValue(1.0);
+    animation->setEndValue(0.0);
+
+    // Connect the finished signal to a slot to hide the frame after the
+    // animation is complete
+    connect(animation, &QPropertyAnimation::finished, frame, &QFrame::hide);
+
+    // Start the animation
+    animation->start();
+  }
+
+private:
+  QFrame *frame;
+  QPushButton *button;
+  QGraphicsOpacityEffect *opacityEffect;
+};
+
+int main(int argc, char *argv[]) {
+  QApplication a(argc, argv);
+
+  MainWindow w;
+  w.show();
+
+  return a.exec();
+}
+
+#include "main.moc"

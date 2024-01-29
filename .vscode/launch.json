@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "hello_world_qt6 (MSVC)",
+      "name": "safebook (MSVC)",
       "type": "cppvsdbg",
       "request": "launch",
       // Resolved by CMake Tools:
@@ -20,7 +20,7 @@
       }
     },
     {
-      "name": "hello_world_qt6 (macOS/Linux)",
+      "name": "safebook (macOS/Linux)",
       "type": "cppdbg",
       "request": "launch",
       "program": "${command:cmake.launchTargetPath}",
