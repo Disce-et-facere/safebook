@@ -5,10 +5,6 @@
 			"path" : "CMakeLists.txt"
 		},
 		{
-			"isGenerated" : true,
-			"path" : "build-debug/CMakeFiles/3.28.1/CMakeSystem.cmake"
-		},
-		{
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake"
@@ -17,10 +13,6 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/Program Files/CMake/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake"
-		},
-		{
-			"isGenerated" : true,
-			"path" : "build-debug/CMakeFiles/3.28.1/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -81,10 +73,6 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/Program Files/CMake/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake"
-		},
-		{
-			"isGenerated" : true,
-			"path" : "build-debug/CMakeFiles/3.28.1/CMakeRCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,

@@ -7,10 +7,8 @@
 	"CMAKE_LIST_FILES" : 
 	[
 		"D:/CODE/Github/safebook/CMakeLists.txt",
-		"D:/CODE/Github/safebook/build-debug/CMakeFiles/3.28.1/CMakeSystem.cmake",
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake",
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake",
-		"D:/CODE/Github/safebook/build-debug/CMakeFiles/3.28.1/CMakeCXXCompiler.cmake",
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake",
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeGenericSystem.cmake",
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake",
@@ -23,7 +21,6 @@
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX.cmake",
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/Platform/Windows-GNU.cmake",
-		"D:/CODE/Github/safebook/build-debug/CMakeFiles/3.28.1/CMakeRCCompiler.cmake",
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeRCInformation.cmake",
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/Platform/Windows-windres.cmake",
 		"C:/Program Files/CMake/share/cmake-3.28/Modules/Platform/Windows-GNU-CXX-ABI.cmake",
