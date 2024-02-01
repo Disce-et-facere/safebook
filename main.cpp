@@ -11,6 +11,9 @@
 #include <QMouseEvent>
 #include <QPropertyAnimation>
 #include <QPushButton>
+#include <QTextEdit>
+#include <QTime>
+#include <QTimer>
 #include <QWidget>
 
 class Safebook : public QWidget {
@@ -157,7 +160,8 @@ public:
     // LoggedIn Frame this is the one not working with bg-color
     loggedInBgFrame = new QFrame(this);
     loggedInBgFrame->setGeometry(0, 0, 1200, 700);
-    loggedInBgFrame->setStyleSheet("background-image: url(../bg.jpg)");
+    loggedInBgFrame->setStyleSheet(
+        "background-image: url(../resources/bg.jpg)");
     loggedInBgFrame->show();
 
     loggedInFrame = new QFrame(this);
@@ -166,29 +170,71 @@ public:
 
     sourceBtn = new QPushButton(loggedInFrame);
     sourceBtn->setGeometry(186, 188, 60, 28);
+    sourceBtn->setObjectName("sourceBtn");
     sourceBtn->setStyleSheet(
         "background-color: rgba(27,21,160,0); border: none; "
         "border-radius: 5px;");
 
     sourceBtn->installEventFilter(this);
 
-    QLabel *sourcePath =
-        new QLabel("C:/Users/krant/Desktop/abc.txt", loggedInFrame);
-    sourcePath->setGeometry(253, 188, 327, 30);
-    sourcePath->setFont(QFont("Verdana", 12));
-    sourcePath->setStyleSheet("color: rgba(27,21,237,150); box-shadow: 0 0 "
-                              "10px rgba(255, 255, 255, 0.8);");
+    sourcePath = new QLabel("C:/Users/krant/Desktop/abc.txt ✓", loggedInFrame);
+    sourcePath->setGeometry(253, 190, 327, 30);
+    sourcePath->setFont(QFont("Verdana", 10, QFont::Bold));
+    sourcePath->setStyleSheet("color: rgba(143,140,197,255);");
 
     connect(sourceBtn, &QPushButton::clicked,
-            [=]() { openFileDialog(sourcePath); });
+            [=]() { openFileDialog(sourceBtn, sourcePath); });
 
     targetBtn = new QPushButton(loggedInFrame);
     targetBtn->setGeometry(186, 240, 60, 28);
+    targetBtn->setObjectName("targetBtn");
     targetBtn->setStyleSheet(
         "background-color: rgba(27,21,160,0); border: none; "
         "border-radius: 5px;");
 
     targetBtn->installEventFilter(this);
+
+    targetPath = new QLabel("C:/Users/krant/Desktop/abc.txt", loggedInFrame);
+    targetPath->setGeometry(253, 242, 327, 30);
+    targetPath->setFont(QFont("Verdana", 10, QFont::Bold));
+    targetPath->setStyleSheet("color: rgba(143,140,197,255);");
+
+    connect(targetBtn, &QPushButton::clicked,
+            [=]() { openFileDialog(targetBtn, targetPath); });
+
+    md5Btn = new QPushButton(loggedInFrame);
+    md5Btn->setGeometry(554, 330, 25, 20);
+    md5Btn->setObjectName("md5Btn");
+    md5Btn->setStyleSheet("background-color: rgba(27,21,160,0); border: none; "
+                          "border-radius: 5px;");
+
+    md5Btn->installEventFilter(this);
+
+    connect(md5Btn, &QPushButton::clicked, [=]() { checksCheckBoxes(md5Btn); });
+
+    sha256Btn = new QPushButton(loggedInFrame);
+    sha256Btn->setGeometry(554, 367, 25, 20);
+    sha256Btn->setObjectName("sha256Btn");
+    sha256Btn->setStyleSheet(
+        "background-color: rgba(27,21,160,0); border: none; "
+        "border-radius: 5px;");
+
+    sha256Btn->installEventFilter(this);
+
+    connect(sha256Btn, &QPushButton::clicked,
+            [=]() { checksCheckBoxes(sha256Btn); });
+
+    bruteforceBtn = new QPushButton(loggedInFrame);
+    bruteforceBtn->setGeometry(554, 403, 25, 20);
+    bruteforceBtn->setObjectName("bruteforceBtn");
+    bruteforceBtn->setStyleSheet(
+        "background-color: rgba(27,21,160,0); border: none; "
+        "border-radius: 5px;");
+
+    bruteforceBtn->installEventFilter(this);
+
+    connect(bruteforceBtn, &QPushButton::clicked,
+            [=]() { checksCheckBoxes(bruteforceBtn); });
 
     startBtn = new QPushButton(loggedInFrame);
     startBtn->setGeometry(70, 528, 100, 50);
@@ -197,6 +243,36 @@ public:
         "border-radius: 5px;");
 
     startBtn->installEventFilter(this);
+
+    connect(startBtn, &QPushButton::clicked, this, &Safebook::startTimer);
+
+    stopBtn = new QPushButton(loggedInFrame);
+    stopBtn->setGeometry(186, 528, 100, 50);
+    stopBtn->setStyleSheet("background-color: rgba(27,21,160,0); border: none; "
+                           "border-radius: 5px;");
+
+    stopBtn->installEventFilter(this);
+
+    connect(stopBtn, &QPushButton::clicked, this, &Safebook::startTimer);
+
+    crackedPasswords = new QTextEdit(loggedInFrame);
+    crackedPasswords->setGeometry(637, 170, 473, 400);
+    crackedPasswords->setFont(QFont("Verdana", 10, QFont::Bold));
+    crackedPasswords->setPlainText("#: f73g8h489h3d6 \nP: Grisen!254");
+    crackedPasswords->setReadOnly(true);
+    crackedPasswords->setStyleSheet(
+        "color: rgba(143,140,197,255); border: none;");
+    crackedPasswords->show();
+
+    timerDisplay =
+        new QLabel("00:00:00", loggedInFrame); // diffrent thread maybe?!
+    timerDisplay->setGeometry(376, 535, 150, 50);
+    timerDisplay->setFont(QFont("Verdana", 18, QFont::Bold));
+    timerDisplay->setStyleSheet("color: rgba(143,140,197,255); border: none;");
+
+    timer = new QTimer(loggedInFrame);
+
+    connect(timer, &QTimer::timeout, this, &Safebook::updateTimer);
   }
 
 private:
@@ -209,35 +285,87 @@ private:
   QPushButton *sourceBtn;
   QPushButton *targetBtn;
   QPushButton *startBtn;
+  QPushButton *stopBtn;
+  QPushButton *md5Btn;
+  QPushButton *sha256Btn;
+  QPushButton *bruteforceBtn;
   QLabel *sourcePath;
+  QLabel *targetPath;
+  QLabel *timerDisplay;
+  QTimer *timer;
+  QTime currentTime;
+
+  QTextEdit *crackedPasswords;
   QGraphicsOpacityEffect *logInOpacityEffect;
   QGraphicsOpacityEffect *createAccountOpacityEffect;
+
+  bool md5Checked = false;
+  bool sha256Checked = false;
+  bool bruteforceChecked = false;
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event) override {
     if (event->type() == QEvent::Enter || event->type() == QEvent::Leave) {
-      // Check for the first button
+      // Source Button
       if (obj == sourceBtn) {
         sourceBtn->setStyleSheet(
             event->type() == QEvent::Enter
-                ? "background-color: rgba(27,21,160,100); border: none; "
+                ? "background-color: rgba(143,140,197,100); border: none; "
                   "border-radius: 5px;"
-                : "background-color: rgba(27,21,160,0);; border-radius: 5px;");
+                : "background-color: rgba(27,21,160,0);; border-radius: "
+                  "5px;");
       }
-      // Check for the second button
+      // Target Button
       else if (obj == targetBtn) {
         targetBtn->setStyleSheet(
             event->type() == QEvent::Enter
-                ? "background-color: rgba(27,21,160,100);; border-radius: 5px;"
-                : "background-color: rgba(27,21,160,0);; border-radius: 5px;");
+                ? "background-color: rgba(143,140,197,100);; border-radius: "
+                  "5px;"
+                : "background-color: rgba(27,21,160,0);; border-radius: "
+                  "5px;");
       }
-      // Check for the third button
+      // Start Button
       else if (obj == startBtn) {
-        startBtn->setStyleSheet(event->type() == QEvent::Enter
-                                    ? "background-color: rgba(27,21,160,100); "
-                                      "border: none; border-radius: 5px;"
-                                    : "background-color: rgba(27,21,160,0); "
-                                      "border: none; border-radius: 5px;");
+        startBtn->setStyleSheet(
+            event->type() == QEvent::Enter
+                ? "background-color: rgba(143,140,197,100); "
+                  "border: none; border-radius: 5px;"
+                : "background-color: rgba(27,21,160,0); "
+                  "border: none; border-radius: 5px;");
+      }
+      // Stop Button
+      else if (obj == stopBtn) {
+        stopBtn->setStyleSheet(event->type() == QEvent::Enter
+                                   ? "background-color: rgba(143,140,197,100); "
+                                     "border: none; border-radius: 5px;"
+                                   : "background-color: rgba(27,21,160,0); "
+                                     "border: none; border-radius: 5px;");
+      }
+      // MD5 Button
+      else if (obj == md5Btn && !md5Checked) {
+        md5Btn->setStyleSheet(event->type() == QEvent::Enter
+                                  ? "background-color: rgba(143,140,197,100); "
+                                    "border: none; border-radius: 5px;"
+                                  : "background-color: rgba(27,21,160,0); "
+                                    "border: none; border-radius: 5px;");
+      }
+      // SHA-256 Button
+      else if (obj == sha256Btn && !sha256Checked) {
+        sha256Btn->setStyleSheet(
+            event->type() == QEvent::Enter
+                ? "background-color: rgba(143,140,197,100); "
+                  "border: none; border-radius: 5px;"
+                : "background-color: rgba(27,21,160,0); "
+                  "border: none; border-radius: 5px;");
+      }
+      // BruteForce Button
+      else if (obj == bruteforceBtn && !bruteforceChecked) {
+        bruteforceBtn->setStyleSheet(
+            event->type() == QEvent::Enter
+                ? "background-color: rgba(143,140,197,100); "
+                  "border: none; border-radius: 5px;"
+                : "background-color: rgba(27,21,160,0); "
+                  "border: none; border-radius: 5px;");
       }
     }
 
@@ -245,14 +373,24 @@ protected:
     return QWidget::eventFilter(obj, event);
   }
 
-  void openFileDialog(QLabel *labelToUpdate) {
+  void openFileDialog(QPushButton *button, QLabel *labelToUpdate) {
+    if (button->objectName() == "sourceBtn") {
+      QString filePath = QFileDialog::getOpenFileName(
+          this, "Choose Source Path", QDir::homePath(), "Text Files (*.txt)");
 
-    QString filePath = QFileDialog::getOpenFileName(
-        this, "Open TXT File", QDir::homePath(), "Text Files (*.txt)");
-    // QMessageBox::information(nullptr, "Information", "Before.");
-    if (!filePath.isEmpty() && labelToUpdate) {
+      if (!filePath.isEmpty() && labelToUpdate) {
 
-      labelToUpdate->setText(filePath);
+        labelToUpdate->setText(filePath);
+      }
+    } else if (button->objectName() == "targetBtn") {
+
+      QString filePath = QFileDialog::getOpenFileName(
+          this, "Choose Target Path", QDir::homePath(), "Text Files (*.txt)");
+
+      if (!filePath.isEmpty() && labelToUpdate) {
+
+        labelToUpdate->setText(filePath);
+      }
     }
   }
 
@@ -261,7 +399,6 @@ private slots:
   void fadeOutFrame(QFrame *frameToFadeOut, QFrame *frameToFadeIn,
                     QGraphicsOpacityEffect *fadeOutOpacityEffect,
                     QGraphicsOpacityEffect *fadeInOpacityEffect) {
-
     QPropertyAnimation *fadeOutAnimation =
         new QPropertyAnimation(fadeOutOpacityEffect, "opacity");
     fadeOutAnimation->setDuration(300);
@@ -277,7 +414,6 @@ private slots:
 
   void fadeInFrame(QFrame *frameToFadeIn, QFrame *frameToFadeOut,
                    QGraphicsOpacityEffect *fadeInOpacityEffect) {
-
     frameToFadeIn->show();
 
     QPropertyAnimation *fadeInAnimation =
@@ -290,6 +426,109 @@ private slots:
             [=]() { frameToFadeOut->hide(); });
 
     fadeInAnimation->start();
+  }
+
+  void checksCheckBoxes(QPushButton *button) {
+    if (button->objectName() == "md5Btn") {
+
+      if (!md5Checked) {
+        md5Btn->setStyleSheet(
+            "background-color: rgba(143,140,197,100); border: none; "
+            "border-radius: 5px;");
+        sha256Btn->setStyleSheet(
+            "background-color: rgba(143,140,197,0); border: none; "
+            "border-radius: 5px;");
+        bruteforceBtn->setStyleSheet(
+            "background-color: rgba(143,140,197,0); border: none; "
+            "border-radius: 5px;");
+
+        md5Checked = true;
+        sha256Checked = false;
+        bruteforceChecked = false;
+      } else {
+        md5Btn->setStyleSheet(
+            "background-color: rgba(143,140,197,0); border: none; "
+            "border-radius: 5px;");
+        md5Checked = false;
+      }
+
+    } else if (button->objectName() == "sha256Btn") {
+
+      if (!sha256Checked) {
+        sha256Btn->setStyleSheet(
+            "background-color: rgba(143,140,197,100); border: none; "
+            "border-radius: 5px;");
+        md5Btn->setStyleSheet(
+            "background-color: rgba(143,140,197,0); border: none; "
+            "border-radius: 5px;");
+        bruteforceBtn->setStyleSheet(
+            "background-color: rgba(143,140,197,0); border: none; "
+            "border-radius: 5px;");
+
+        sha256Checked = true;
+        bruteforceChecked = false;
+        md5Checked = false;
+      } else {
+        sha256Btn->setStyleSheet(
+            "background-color: rgba(143,140,197,0); border: none; "
+            "border-radius: 5px;");
+        sha256Checked = false;
+      }
+
+    } else if (button->objectName() == "bruteforceBtn") {
+
+      if (!bruteforceChecked) {
+        bruteforceBtn->setStyleSheet(
+            "background-color: rgba(143,140,197,100); border: none; "
+            "border-radius: 5px;");
+        sha256Btn->setStyleSheet(
+            "background-color: rgba(143,140,197,0); border: none; "
+            "border-radius: 5px;");
+        md5Btn->setStyleSheet(
+            "background-color: rgba(143,140,197,0); border: none; "
+            "border-radius: 5px;");
+
+        bruteforceChecked = true;
+        sha256Checked = false;
+        md5Checked = false;
+      } else {
+        bruteforceBtn->setStyleSheet(
+            "background-color: rgba(143,140,197,0); border: none; "
+            "border-radius: 5px;");
+        bruteforceChecked = false;
+      }
+    }
+  }
+
+  void startTimer() {
+    // Start the timer
+    timer->start(1000); // Update every 1000 milliseconds (1 second)
+
+    // Enable/disable buttons accordingly
+    startBtn->setEnabled(false);
+    stopBtn->setEnabled(true);
+  }
+
+  void stopTimer() {
+    // Stop the timer
+    timer->stop();
+
+    // Enable/disable buttons accordingly
+    startBtn->setEnabled(true);
+    stopBtn->setEnabled(false);
+  }
+
+  void updateTimer() {
+    qDebug() << "Entering calculateFormattedTime function";
+    // Increment the time by one second
+    currentTime = currentTime.addSecs(1);
+    // QMessageBox::information(nullptr, "Information",
+    //                        "Time:currentTime");
+    // Format the time as "hh:mm:ss"
+    QString formattedTime = currentTime.toString("hh:mm:ss");
+
+    // Update the QLabel with the formatted time
+    timerDisplay->setText(formattedTime);
   }
 };
 

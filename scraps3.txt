@@ -3,12 +3,8 @@
 #include <QEvent>
 #include <QFileDialog>
 #include <QFrame>
-#include <QGraphicsBlurEffect>
 #include <QGraphicsDropShadowEffect>
 #include <QGraphicsOpacityEffect>
-#include <QGraphicsScene>
-#include <QGraphicsTextItem>
-#include <QGraphicsView>
 #include <QLabel>
 #include <QLineEdit>
 #include <QMessageBox>
@@ -161,7 +157,8 @@ public:
     // LoggedIn Frame this is the one not working with bg-color
     loggedInBgFrame = new QFrame(this);
     loggedInBgFrame->setGeometry(0, 0, 1200, 700);
-    loggedInBgFrame->setStyleSheet("background-image: url(../bg.jpg)");
+    loggedInBgFrame->setStyleSheet(
+        "background-image: url(../resources/bg.jpg)");
     loggedInBgFrame->show();
 
     loggedInFrame = new QFrame(this);
@@ -176,37 +173,15 @@ public:
 
     sourceBtn->installEventFilter(this);
 
-    QGraphicsScene *textScene = new QGraphicsScene(this);
+    sourcePath = new QLabel("C:/Users/krant/Desktop/abc.txt ✓", loggedInFrame);
+    sourcePath->setGeometry(253, 188, 327, 30);
+    sourcePath->setFont(QFont("Verdana", 12));
+    sourcePath->setStyleSheet(
+        "color: rgba(92,80,206,200); background-color:rgba(255,255,255,100; "
+        "border-radius:10px;)");
 
-    QGraphicsTextItem *sourcePath =
-        new QGraphicsTextItem("C:/Users/krant/Desktop/abc.txt");
-    // sourcePath->setGeometry(253, 188, 327, 30);
-    // sourcePath->setFont(QFont("Verdana", 12));
-    // sourcePath->setStyleSheet("color: rgba(27,21,237,150); box-shadow: 0 0 "
-    //                           "10px rgba(255, 255, 255, 0.8);");
-
-    QFont blueGlow("verdana", 12);
-    sourcePath->setFont(blueGlow);
-
-    QGraphicsBlurEffect *textShadow = new QGraphicsBlurEffect(sourcePath);
-    textShadow->setBlurRadius(25);
-
-    sourcePath->setGraphicsEffect(textShadow);
-
-    // Add the text item to the scene
-    textScene->addItem(sourcePath);
-
-    // Create a QGraphicsView to display the scene
-    QGraphicsView *textView = new QGraphicsView(textScene);
-
-    // Set the geometry of the QGraphicsView
-    textView->setGeometry(253, 188, 327, 30);
-
-    // Set render hints for better quality
-    textView->setRenderHint(QPainter::Antialiasing, true);
-
-    // connect(sourceBtn, &QPushButton::clicked,
-    //        [=]() { openFileDialog(sourcePath); });
+    connect(sourceBtn, &QPushButton::clicked,
+            [=]() { openFileDialog(sourcePath); });
 
     targetBtn = new QPushButton(loggedInFrame);
     targetBtn->setGeometry(186, 240, 60, 28);
@@ -215,6 +190,14 @@ public:
         "border-radius: 5px;");
 
     targetBtn->installEventFilter(this);
+
+    targetPath = new QLabel("C:/Users/krant/Desktop/abc.txt", loggedInFrame);
+    targetPath->setGeometry(253, 240, 327, 30);
+    targetPath->setFont(QFont("Verdana", 12));
+    targetPath->setStyleSheet("color: rgba(92,80,206,200);");
+
+    connect(targetBtn, &QPushButton::clicked,
+            [=]() { openFileDialog(targetPath); });
 
     startBtn = new QPushButton(loggedInFrame);
     startBtn->setGeometry(70, 528, 100, 50);
@@ -236,6 +219,7 @@ private:
   QPushButton *targetBtn;
   QPushButton *startBtn;
   QLabel *sourcePath;
+  QLabel *targetPath;
   QGraphicsOpacityEffect *logInOpacityEffect;
   QGraphicsOpacityEffect *createAccountOpacityEffect;
 
@@ -246,7 +230,7 @@ protected:
       if (obj == sourceBtn) {
         sourceBtn->setStyleSheet(
             event->type() == QEvent::Enter
-                ? "background-color: rgba(27,21,160,100); border: none; "
+                ? "background-color: rgba(143,140,197,100); border: none; "
                   "border-radius: 5px;"
                 : "background-color: rgba(27,21,160,0);; border-radius: 5px;");
       }
@@ -254,16 +238,18 @@ protected:
       else if (obj == targetBtn) {
         targetBtn->setStyleSheet(
             event->type() == QEvent::Enter
-                ? "background-color: rgba(27,21,160,100);; border-radius: 5px;"
+                ? "background-color: rgba(143,140,197,100);; border-radius: "
+                  "5px;"
                 : "background-color: rgba(27,21,160,0);; border-radius: 5px;");
       }
       // Check for the third button
       else if (obj == startBtn) {
-        startBtn->setStyleSheet(event->type() == QEvent::Enter
-                                    ? "background-color: rgba(27,21,160,100); "
-                                      "border: none; border-radius: 5px;"
-                                    : "background-color: rgba(27,21,160,0); "
-                                      "border: none; border-radius: 5px;");
+        startBtn->setStyleSheet(
+            event->type() == QEvent::Enter
+                ? "background-color: rgba(143,140,197,100); "
+                  "border: none; border-radius: 5px;"
+                : "background-color: rgba(27,21,160,0); "
+                  "border: none; border-radius: 5px;");
       }
     }
 
