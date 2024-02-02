@@ -1,8 +1,0 @@
-# ninja log v5
-10	130	7285195329100943	safebook_autogen/timestamp	e478f137c46c25a7
-160	219	7284091277426876	CMakeFiles/safebook.dir/safebook_autogen/mocs_compilation.cpp.obj	c5e17f645d575fd1
-2641	2840	7285195356147838	safebook.exe	c0d5e6acad7b8b82
-10	130	7285195329100943	safebook_autogen/mocs_compilation.cpp	e478f137c46c25a7
-10	130	7285195329100943	D:/CODE/Github/safebook/build-debug/safebook_autogen/timestamp	e478f137c46c25a7
-10	130	7285195329100943	D:/CODE/Github/safebook/build-debug/safebook_autogen/mocs_compilation.cpp	e478f137c46c25a7
-132	2641	7285195354151963	CMakeFiles/safebook.dir/main.cpp.obj	387d18a521223856

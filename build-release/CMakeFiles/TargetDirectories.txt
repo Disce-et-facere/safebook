@@ -1,9 +1,0 @@
-C:/Users/krant/Documents/Github/safebook/build-release/CMakeFiles/safebook.dir
-C:/Users/krant/Documents/Github/safebook/build-release/CMakeFiles/edit_cache.dir
-C:/Users/krant/Documents/Github/safebook/build-release/CMakeFiles/rebuild_cache.dir
-C:/Users/krant/Documents/Github/safebook/build-release/CMakeFiles/list_install_components.dir
-C:/Users/krant/Documents/Github/safebook/build-release/CMakeFiles/install.dir
-C:/Users/krant/Documents/Github/safebook/build-release/CMakeFiles/install/local.dir
-C:/Users/krant/Documents/Github/safebook/build-release/CMakeFiles/install/strip.dir
-C:/Users/krant/Documents/Github/safebook/build-release/CMakeFiles/safebook_autogen_timestamp_deps.dir
-C:/Users/krant/Documents/Github/safebook/build-release/CMakeFiles/safebook_autogen.dir
