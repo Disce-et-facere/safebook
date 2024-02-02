@@ -22,9 +22,9 @@ public:
     setFixedSize(1200, 700);
     setStyleSheet("background-color:rgb(222, 222, 222)");
 
-    QFrame *shadowBox = new QFrame(this);
+    shadowBox = new QFrame(this);
     shadowBox->setGeometry(400, 165, 400, 370);
-    shadowBox->hide();
+    shadowBox->show();
 
     QGraphicsDropShadowEffect *dropShadow =
         new QGraphicsDropShadowEffect(shadowBox);
@@ -39,7 +39,6 @@ public:
     loginFrame = new QFrame(this);
     loginFrame->setObjectName("loginFrame");
     loginFrame->setGeometry(400, 165, 400, 370);
-    loginFrame->hide();
 
     loginFrame->setStyleSheet("background-color: rgb(255,255,255); "
                               "border-width: 0px; border-radius: 10px;");
@@ -66,42 +65,51 @@ public:
     passwordInput->setStyleSheet("color: rgb(0, 0, 0); border-width: 0px;");
     passwordInput->setPlaceholderText("Password");
 
-    QPushButton *LoginsourceBtn = new QPushButton(loginFrame);
-    LoginsourceBtn->setGeometry(15, 150, 370, 50);
-    LoginsourceBtn->setFont(QFont("Verdana", 14, QFont::Bold));
-    LoginsourceBtn->setStyleSheet("background-color: rgb(24, 119, 242); color: "
+    loginBtn = new QPushButton(loginFrame);
+    loginBtn->setGeometry(15, 150, 370, 50);
+    loginBtn->setFont(QFont("Verdana", 14, QFont::Bold));
+    loginBtn->setStyleSheet("background-color: rgb(24, 119, 242); color: "
                                   "rgb(255, 255, 255); border-radius: 8px;");
-    LoginsourceBtn->setText("Log in");
+    loginBtn->setText("Log in");
+
+    connect(loginBtn, &QPushButton::clicked, loginFrame,
+            [=]() {
+              fadeOutFrames(loginFrame, loggedInBgFrame, loginOpacityEffect,
+                           loggedInBgFrameOpacityEffect);
+            });
 
     QFrame *splitLine = new QFrame(loginFrame);
     splitLine->setGeometry(10, 240, 380, 1);
     splitLine->setStyleSheet(
         "background-color: rgba(222, 222, 222,255); border-width: 0px;");
 
-    createNewAccountsourceBtn = new QPushButton(loginFrame);
-    createNewAccountsourceBtn->setGeometry(75, 275, 250, 60);
-    createNewAccountsourceBtn->setFont(QFont("Verdana", 12, QFont::Bold));
-    createNewAccountsourceBtn->setStyleSheet(
+    createNewAccountBtn = new QPushButton(loginFrame);
+    createNewAccountBtn->setGeometry(75, 275, 250, 60);
+    createNewAccountBtn->setFont(QFont("Verdana", 12, QFont::Bold));
+    createNewAccountBtn->setStyleSheet(
         "background-color: rgb(66, 183, 42); border-radius: 8px;");
-    createNewAccountsourceBtn->setText("Create new account");
+    createNewAccountBtn->setText("Create new account");
 
-    connect(createNewAccountsourceBtn, &QPushButton::clicked, loginFrame,
+    connect(createNewAccountBtn, &QPushButton::clicked, loginFrame,
             [=]() {
-              fadeOutFrame(loginFrame, createAccountFrame, logInOpacityEffect,
+              fadeOutFrames(loginFrame, createAccountFrame, loginOpacityEffect,
                            createAccountOpacityEffect);
             });
 
-    logInOpacityEffect = new QGraphicsOpacityEffect(loginFrame);
-    loginFrame->setGraphicsEffect(logInOpacityEffect);
+    loginOpacityEffect = new QGraphicsOpacityEffect(loginFrame);
+    loginFrame->setGraphicsEffect(loginOpacityEffect);
+
+    loginOpacityEffect->setOpacity(1.0);
 
     // CreateAccountFrame
     createAccountFrame = new QFrame(this);
     createAccountFrame->setObjectName("createAccountFrame");
     createAccountFrame->setGeometry(400, 165, 400, 370);
+    createAccountFrame->hide();
 
     createAccountFrame->setStyleSheet(
         "background-color: rgba(255, 255, 255,255); border-radius: 10px;");
-    createAccountFrame->hide();
+
 
     QFrame *usernameFrame2 = new QFrame(createAccountFrame);
     usernameFrame2->setGeometry(15, 20, 370, 50);
@@ -129,44 +137,59 @@ public:
     passwordInput2->setStyleSheet("color: rgb(0, 0, 0); border-width: 0px;");
     passwordInput2->setPlaceholderText("Password");
 
-    QPushButton *registratesourceBtn = new QPushButton(createAccountFrame);
-    registratesourceBtn->setGeometry(15, 150, 370, 50);
-    registratesourceBtn->setFont(QFont("Verdana", 14, QFont::Bold));
-    registratesourceBtn->setStyleSheet(
+    QPushButton *registrateBtn = new QPushButton(createAccountFrame);
+    registrateBtn->setGeometry(15, 150, 370, 50);
+    registrateBtn->setFont(QFont("Verdana", 14, QFont::Bold));
+    registrateBtn->setStyleSheet(
         "background-color: rgb(66, 183, 42); color: "
         "rgb(255, 255, 255); border-radius: 8px;");
-    registratesourceBtn->setText("Registrate");
+    registrateBtn->setText("Registrate");
 
     QFrame *splitLine2 = new QFrame(createAccountFrame);
     splitLine2->setGeometry(10, 240, 380, 1);
     splitLine2->setStyleSheet(
         "background-color: rgb(222, 222, 222); border-width: 0px;");
 
-    goBacksourceBtn = new QPushButton(createAccountFrame);
-    goBacksourceBtn->setGeometry(75, 275, 250, 60);
-    goBacksourceBtn->setFont(QFont("Verdana", 12, QFont::Bold));
-    goBacksourceBtn->setStyleSheet(
+    goBackBtn = new QPushButton(createAccountFrame);
+    goBackBtn->setGeometry(75, 275, 250, 60);
+    goBackBtn->setFont(QFont("Verdana", 12, QFont::Bold));
+    goBackBtn->setStyleSheet(
         "background-color: rgb(24, 119, 242); border-radius: 8px;");
-    goBacksourceBtn->setText("Go back");
+    goBackBtn->setText("Go back");
 
-    connect(goBacksourceBtn, &QPushButton::clicked, this, [=]() {
-      fadeOutFrame(createAccountFrame, loginFrame, createAccountOpacityEffect,
-                   logInOpacityEffect);
+    connect(goBackBtn, &QPushButton::clicked, this, [=]() {
+      fadeOutFrames(createAccountFrame, loginFrame, createAccountOpacityEffect,
+                   loginOpacityEffect);
     });
 
     createAccountOpacityEffect = new QGraphicsOpacityEffect(createAccountFrame);
     createAccountFrame->setGraphicsEffect(createAccountOpacityEffect);
 
-    // LoggedIn Frame this is the one not working with bg-color
+    createAccountOpacityEffect->setOpacity(0.0);
+
+    // Logged in Frame
     loggedInBgFrame = new QFrame(this);
     loggedInBgFrame->setGeometry(0, 0, 1200, 700);
+    loggedInBgFrame->setObjectName("loggedInBgFrame");
     loggedInBgFrame->setStyleSheet(
         "background-image: url(../resources/bg.jpg)");
-    loggedInBgFrame->show();
+    loggedInBgFrame->hide();
+
+    loggedInBgFrameOpacityEffect = new QGraphicsOpacityEffect(loggedInBgFrame);
+    loggedInBgFrame->setGraphicsEffect(loggedInBgFrameOpacityEffect);
+
+    loggedInBgFrameOpacityEffect->setOpacity(0.0);
 
     loggedInFrame = new QFrame(this);
     loggedInFrame->setGeometry(0, 0, 1200, 700);
     loggedInFrame->setStyleSheet("background-color: rgba(0, 0, 0, 0);");
+    loggedInFrame->hide();
+
+
+    loggedInFrameOpacityEffect = new QGraphicsOpacityEffect(loggedInFrame);
+    loggedInFrame->setGraphicsEffect(loggedInFrameOpacityEffect);
+
+    loggedInFrameOpacityEffect->setOpacity(0.0);
 
     sourceBtn = new QPushButton(loggedInFrame);
     sourceBtn->setGeometry(186, 188, 60, 28);
@@ -253,7 +276,7 @@ public:
 
     stopBtn->installEventFilter(this);
 
-    connect(stopBtn, &QPushButton::clicked, this, &Safebook::startTimer);
+    connect(stopBtn, &QPushButton::clicked, this, &Safebook::stopTimer);
 
     crackedPasswords = new QTextEdit(loggedInFrame);
     crackedPasswords->setGeometry(637, 170, 473, 400);
@@ -270,18 +293,17 @@ public:
     timerDisplay->setFont(QFont("Verdana", 18, QFont::Bold));
     timerDisplay->setStyleSheet("color: rgba(143,140,197,255); border: none;");
 
-    timer = new QTimer(loggedInFrame);
-
-    connect(timer, &QTimer::timeout, this, &Safebook::updateTimer);
   }
 
 private:
+  QFrame *shadowBox;
   QFrame *loginFrame;
   QFrame *createAccountFrame;
   QFrame *loggedInBgFrame;
   QFrame *loggedInFrame;
-  QPushButton *createNewAccountsourceBtn;
-  QPushButton *goBacksourceBtn;
+  QPushButton *loginBtn;
+  QPushButton *createNewAccountBtn;
+  QPushButton *goBackBtn;
   QPushButton *sourceBtn;
   QPushButton *targetBtn;
   QPushButton *startBtn;
@@ -292,16 +314,37 @@ private:
   QLabel *sourcePath;
   QLabel *targetPath;
   QLabel *timerDisplay;
-  QTimer *timer;
   QTime currentTime;
-
+  QTimer *timer;
   QTextEdit *crackedPasswords;
-  QGraphicsOpacityEffect *logInOpacityEffect;
+  QGraphicsOpacityEffect *loginOpacityEffect;
   QGraphicsOpacityEffect *createAccountOpacityEffect;
+  QGraphicsOpacityEffect *loggedInBgFrameOpacityEffect;
+  QGraphicsOpacityEffect *loggedInFrameOpacityEffect;
 
   bool md5Checked = false;
   bool sha256Checked = false;
   bool bruteforceChecked = false;
+
+  void startTimer() {
+        // Initialize the current time to midnight
+        currentTime = QTime(0, 0, 0);
+
+        // Create a timer to update the display every second
+        timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, &Safebook::updateTimer);
+        timer->start(1000); // Update every 1000 milliseconds (1 second)
+
+        startBtn->setEnabled(false);
+        stopBtn->setEnabled(true);
+    }
+
+    void stopTimer(){
+      timer->stop();
+
+      startBtn->setEnabled(true);
+        stopBtn->setEnabled(false);
+    }
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event) override {
@@ -396,23 +439,34 @@ protected:
 
 private slots:
 
-  void fadeOutFrame(QFrame *frameToFadeOut, QFrame *frameToFadeIn,
+  void fadeOutFrames(QFrame *frameToFadeOut, QFrame *frameToFadeIn,
                     QGraphicsOpacityEffect *fadeOutOpacityEffect,
                     QGraphicsOpacityEffect *fadeInOpacityEffect) {
-    QPropertyAnimation *fadeOutAnimation =
+
+    QPropertyAnimation *fadeOutLoginAnimation =
         new QPropertyAnimation(fadeOutOpacityEffect, "opacity");
-    fadeOutAnimation->setDuration(300);
-    fadeOutAnimation->setStartValue(1.0);
-    fadeOutAnimation->setEndValue(0.0);
+    fadeOutLoginAnimation->setDuration(300);
+    fadeOutLoginAnimation->setStartValue(1.0);
+    fadeOutLoginAnimation->setEndValue(0.0);
 
-    connect(fadeOutAnimation, &QPropertyAnimation::finished, this, [=]() {
-      fadeInFrame(frameToFadeIn, frameToFadeOut, fadeInOpacityEffect);
-    });
+    if(frameToFadeIn->objectName() == "loggedInBgFrame"){
 
-    fadeOutAnimation->start();
+      connect(fadeOutLoginAnimation, &QPropertyAnimation::finished, this, [=]() {
+      fadeInLoggedInFrame();
+      });
+      fadeOutLoginAnimation->start();
+
+    }else{
+
+        connect(fadeOutLoginAnimation, &QPropertyAnimation::finished, this, [=]() {
+          fadeInCreateAccountFrame(frameToFadeIn, frameToFadeOut, fadeInOpacityEffect);
+        });
+        fadeOutLoginAnimation->start();
+    }
+
   }
 
-  void fadeInFrame(QFrame *frameToFadeIn, QFrame *frameToFadeOut,
+  void fadeInCreateAccountFrame(QFrame *frameToFadeIn, QFrame *frameToFadeOut,
                    QGraphicsOpacityEffect *fadeInOpacityEffect) {
     frameToFadeIn->show();
 
@@ -426,6 +480,32 @@ private slots:
             [=]() { frameToFadeOut->hide(); });
 
     fadeInAnimation->start();
+  }
+
+  void fadeInLoggedInFrame(){
+
+    loggedInBgFrame->show();
+    loggedInFrame->show();
+
+    QPropertyAnimation *fadeInLoggedInBgAnimation =
+        new QPropertyAnimation(loggedInBgFrameOpacityEffect, "opacity");
+    fadeInLoggedInBgAnimation->setDuration(300);
+    fadeInLoggedInBgAnimation->setStartValue(0.0);
+    fadeInLoggedInBgAnimation->setEndValue(1.0);
+
+    QPropertyAnimation *fadeInLoggedInAnimation =
+        new QPropertyAnimation(loggedInFrameOpacityEffect, "opacity");
+    fadeInLoggedInAnimation->setDuration(500);
+    fadeInLoggedInAnimation->setStartValue(0.0);
+    fadeInLoggedInAnimation->setEndValue(1.0);
+
+    connect(fadeInLoggedInBgAnimation, &QPropertyAnimation::finished, loggedInBgFrame,
+            [=]() { loginFrame->hide();fadeInLoggedInAnimation->start(); });
+    shadowBox->hide();
+    fadeInLoggedInBgAnimation->start();
+    //fadeInLoggedInAnimation->start();
+
+
   }
 
   void checksCheckBoxes(QPushButton *button) {
@@ -500,30 +580,10 @@ private slots:
     }
   }
 
-  void startTimer() {
-    // Start the timer
-    timer->start(1000); // Update every 1000 milliseconds (1 second)
-
-    // Enable/disable buttons accordingly
-    startBtn->setEnabled(false);
-    stopBtn->setEnabled(true);
-  }
-
-  void stopTimer() {
-    // Stop the timer
-    timer->stop();
-
-    // Enable/disable buttons accordingly
-    startBtn->setEnabled(true);
-    stopBtn->setEnabled(false);
-  }
-
   void updateTimer() {
-    qDebug() << "Entering calculateFormattedTime function";
     // Increment the time by one second
     currentTime = currentTime.addSecs(1);
-    // QMessageBox::information(nullptr, "Information",
-    //                        "Time:currentTime");
+
     // Format the time as "hh:mm:ss"
     QString formattedTime = currentTime.toString("hh:mm:ss");
 
