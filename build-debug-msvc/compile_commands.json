@@ -1,0 +1,32 @@
+[
+{
+  "directory": "E:/Github/safebook/build-debug-msvc",
+  "command": "C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1438~1.331\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -IE:\\Github\\safebook\\build-debug-msvc\\safebook_autogen\\include -I\"C:\\Program Files\\OpenSSL-Win64\\include\" -IE:\\Github\\safebook\\include -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtCore -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include -external:IC:\\Qt\\6.6.1\\msvc2019_64\\mkspecs\\win32-msvc -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtWidgets -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtGui -external:W0 /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 -Zc:__cplusplus -permissive- -utf-8 /FoCMakeFiles\\safebook.dir\\safebook_autogen\\mocs_compilation.cpp.obj /FdTARGET_COMPILE_PDB /FS -c E:\\Github\\safebook\\build-debug-msvc\\safebook_autogen\\mocs_compilation.cpp",
+  "file": "E:\\Github\\safebook\\build-debug-msvc\\safebook_autogen\\mocs_compilation.cpp",
+  "output": "CMakeFiles\\safebook.dir\\safebook_autogen\\mocs_compilation.cpp.obj"
+},
+{
+  "directory": "E:/Github/safebook/build-debug-msvc",
+  "command": "C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1438~1.331\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -IE:\\Github\\safebook\\build-debug-msvc\\safebook_autogen\\include -I\"C:\\Program Files\\OpenSSL-Win64\\include\" -IE:\\Github\\safebook\\include -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtCore -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include -external:IC:\\Qt\\6.6.1\\msvc2019_64\\mkspecs\\win32-msvc -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtWidgets -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtGui -external:W0 /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 -Zc:__cplusplus -permissive- -utf-8 /FoCMakeFiles\\safebook.dir\\src\\crackEngine.cpp.obj /FdTARGET_COMPILE_PDB /FS -c E:\\Github\\safebook\\src\\crackEngine.cpp",
+  "file": "E:\\Github\\safebook\\src\\crackEngine.cpp",
+  "output": "CMakeFiles\\safebook.dir\\src\\crackEngine.cpp.obj"
+},
+{
+  "directory": "E:/Github/safebook/build-debug-msvc",
+  "command": "C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1438~1.331\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -IE:\\Github\\safebook\\build-debug-msvc\\safebook_autogen\\include -I\"C:\\Program Files\\OpenSSL-Win64\\include\" -IE:\\Github\\safebook\\include -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtCore -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include -external:IC:\\Qt\\6.6.1\\msvc2019_64\\mkspecs\\win32-msvc -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtWidgets -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtGui -external:W0 /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 -Zc:__cplusplus -permissive- -utf-8 /FoCMakeFiles\\safebook.dir\\src\\hashManager.cpp.obj /FdTARGET_COMPILE_PDB /FS -c E:\\Github\\safebook\\src\\hashManager.cpp",
+  "file": "E:\\Github\\safebook\\src\\hashManager.cpp",
+  "output": "CMakeFiles\\safebook.dir\\src\\hashManager.cpp.obj"
+},
+{
+  "directory": "E:/Github/safebook/build-debug-msvc",
+  "command": "C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1438~1.331\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -IE:\\Github\\safebook\\build-debug-msvc\\safebook_autogen\\include -I\"C:\\Program Files\\OpenSSL-Win64\\include\" -IE:\\Github\\safebook\\include -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtCore -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include -external:IC:\\Qt\\6.6.1\\msvc2019_64\\mkspecs\\win32-msvc -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtWidgets -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtGui -external:W0 /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 -Zc:__cplusplus -permissive- -utf-8 /FoCMakeFiles\\safebook.dir\\src\\safebook.cpp.obj /FdTARGET_COMPILE_PDB /FS -c E:\\Github\\safebook\\src\\safebook.cpp",
+  "file": "E:\\Github\\safebook\\src\\safebook.cpp",
+  "output": "CMakeFiles\\safebook.dir\\src\\safebook.cpp.obj"
+},
+{
+  "directory": "E:/Github/safebook/build-debug-msvc",
+  "command": "C:\\PROGRA~1\\MICROS~2\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1438~1.331\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -IE:\\Github\\safebook\\build-debug-msvc\\safebook_autogen\\include -I\"C:\\Program Files\\OpenSSL-Win64\\include\" -IE:\\Github\\safebook\\include -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtCore -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include -external:IC:\\Qt\\6.6.1\\msvc2019_64\\mkspecs\\win32-msvc -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtWidgets -external:IC:\\Qt\\6.6.1\\msvc2019_64\\include\\QtGui -external:W0 /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 -Zc:__cplusplus -permissive- -utf-8 /FoCMakeFiles\\safebook.dir\\src\\userManager.cpp.obj /FdTARGET_COMPILE_PDB /FS -c E:\\Github\\safebook\\src\\userManager.cpp",
+  "file": "E:\\Github\\safebook\\src\\userManager.cpp",
+  "output": "CMakeFiles\\safebook.dir\\src\\userManager.cpp.obj"
+}
+]

@@ -12,8 +12,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-set(PROJECT_SOURCES
-        main.cpp
+set(OPENSSL_INCLUDE_DIR "C:/Program Files/OpenSSL-Win64/include")
+set(OPENSSL_LIB_DIR "C:/Program Files/OpenSSL-Win64/lib/VC/x64/MD")
+
+file(GLOB PROJECT_SOURCES
+        src/*.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -39,6 +42,12 @@ else()
     endif()
 endif()
 
+target_include_directories(safebook PRIVATE "${OPENSSL_INCLUDE_DIR}")
+target_include_directories(safebook PRIVATE include)
+target_link_libraries(safebook PRIVATE
+    "${OPENSSL_LIB_DIR}/libcrypto.lib"
+    "${OPENSSL_LIB_DIR}/libssl.lib"
+)
 target_link_libraries(safebook PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 set_target_properties(safebook PROPERTIES

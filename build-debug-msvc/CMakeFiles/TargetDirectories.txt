@@ -1,0 +1,8 @@
+E:/Github/safebook/build-debug-msvc/CMakeFiles/safebook.dir
+E:/Github/safebook/build-debug-msvc/CMakeFiles/edit_cache.dir
+E:/Github/safebook/build-debug-msvc/CMakeFiles/rebuild_cache.dir
+E:/Github/safebook/build-debug-msvc/CMakeFiles/list_install_components.dir
+E:/Github/safebook/build-debug-msvc/CMakeFiles/install.dir
+E:/Github/safebook/build-debug-msvc/CMakeFiles/install/local.dir
+E:/Github/safebook/build-debug-msvc/CMakeFiles/safebook_autogen_timestamp_deps.dir
+E:/Github/safebook/build-debug-msvc/CMakeFiles/safebook_autogen.dir
