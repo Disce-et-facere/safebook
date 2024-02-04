@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-5c216da8910aeddc2123.json",
+					"jsonFile" : "directory-.-Debug-3ef6a1933cbd5f88fa23.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "safebook::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-safebook-Debug-1e0368513164c7b28d1f.json",
+					"jsonFile" : "target-safebook-Debug-f72dbe55304295cc27fa.json",
 					"name" : "safebook",
 					"projectIndex" : 0
 				},

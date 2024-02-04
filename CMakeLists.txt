@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(CUDAToolkit REQUIRED)
 
 set(OPENSSL_INCLUDE_DIR "C:/Program Files/OpenSSL-Win64/include")
 set(OPENSSL_LIB_DIR "C:/Program Files/OpenSSL-Win64/lib/VC/x64/MD")
@@ -24,17 +25,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET hello_world APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
+
 else()
     if(ANDROID)
         add_library(safebook SHARED
             ${PROJECT_SOURCES}
         )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
         add_executable(safebook
             ${PROJECT_SOURCES}
@@ -44,9 +40,11 @@ endif()
 
 target_include_directories(safebook PRIVATE "${OPENSSL_INCLUDE_DIR}")
 target_include_directories(safebook PRIVATE include)
+target_include_directories(safebook PRIVATE ${CUDA_INCLUDE_DIRS})  # Include Thrust
 target_link_libraries(safebook PRIVATE
     "${OPENSSL_LIB_DIR}/libcrypto.lib"
     "${OPENSSL_LIB_DIR}/libssl.lib"
+    "$${CUDAToolkit_LIBRARY_DIRS}"
 )
 target_link_libraries(safebook PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 

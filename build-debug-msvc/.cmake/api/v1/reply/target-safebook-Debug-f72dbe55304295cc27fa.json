@@ -52,7 +52,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 23,
+				"line" : 24,
 				"parent" : 0
 			},
 			{
@@ -76,19 +76,19 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 61,
+				"line" : 59,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 47,
+				"line" : 44,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 51,
+				"line" : 49,
 				"parent" : 0
 			},
 			{
@@ -270,13 +270,13 @@
 			{
 				"command" : 11,
 				"file" : 1,
-				"line" : 45,
+				"line" : 41,
 				"parent" : 0
 			},
 			{
 				"command" : 11,
 				"file" : 1,
-				"line" : 46,
+				"line" : 42,
 				"parent" : 0
 			}
 		]
@@ -404,11 +404,11 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "safebook_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "safebook_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "safebook_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "safebook::@6890427a1f51a3e7e1df",
@@ -446,6 +446,11 @@
 			{
 				"backtrace" : 6,
 				"fragment" : "\"C:\\Program Files\\OpenSSL-Win64\\lib\\VC\\x64\\MD\\libssl.lib\"",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "$",
 				"role" : "libraries"
 			},
 			{

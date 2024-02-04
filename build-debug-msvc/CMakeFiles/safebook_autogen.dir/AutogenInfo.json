@@ -371,7 +371,11 @@
 		"C:/Qt/6.6.1/msvc2019_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginTargets.cmake",
 		"C:/Qt/6.6.1/msvc2019_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginTargets-debug.cmake",
 		"C:/Qt/6.6.1/msvc2019_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginTargets-relwithdebinfo.cmake",
-		"C:/Qt/6.6.1/msvc2019_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginAdditionalTargetInfo.cmake"
+		"C:/Qt/6.6.1/msvc2019_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginAdditionalTargetInfo.cmake",
+		"C:/Program Files/CMake/share/cmake-3.28/Modules/FindCUDAToolkit.cmake",
+		"C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeParseImplicitLinkInfo.cmake",
+		"C:/Program Files/CMake/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake",
+		"C:/Program Files/CMake/share/cmake-3.28/Modules/FindPackageMessage.cmake"
 	],
 	"CMAKE_SOURCE_DIR" : "E:/Github/safebook",
 	"DEP_FILE" : "E:/Github/safebook/build-debug-msvc/safebook_autogen/deps",
