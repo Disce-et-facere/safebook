@@ -4,7 +4,7 @@
 #include <openssl/sha.h>
 #include <sstream>
 
-std::string HashEngine::md5Hash(const std::string &data) {
+std::string HashManager::md5Hash(const std::string &data) {
   unsigned char md[MD5_DIGEST_LENGTH];
   MD5(reinterpret_cast<const unsigned char *>(data.c_str()), data.length(), md);
 
@@ -17,7 +17,7 @@ std::string HashEngine::md5Hash(const std::string &data) {
   return ss.str();
 }
 
-std::string HashEngine::sha256Hash(const std::string &data) {
+std::string HashManager::sha256Hash(const std::string &data) {
   unsigned char sha256Digest[SHA256_DIGEST_LENGTH];
   SHA256(reinterpret_cast<const unsigned char *>(data.c_str()), data.length(),
          sha256Digest);

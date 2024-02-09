@@ -140,7 +140,7 @@ std::string UserManager::generateRandomSalt(int length) {
 }
 std::string UserManager::createHash(const std::string &password,
                                     const std::string &salt) {
-  return HashEngine::md5Hash(password + salt);
+  return HashManager::md5Hash(password + salt);
 }
 
 bool UserManager::isPasswordValid(const std::string &password) {

@@ -3,7 +3,7 @@
 
 #include <string>
 
-class HashEngine {
+class HashManager {
 public:
   static std::string md5Hash(const std::string &data);
   static std::string sha256Hash(const std::string &data);
